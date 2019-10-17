@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- basic message output -->
+        <div id="app">
+            {{ message }}
+        </div>
+        <div id="v_bind">
+            <span v-bind:title="message">
+                Hover your mouse over me for a few seconds to see my dynamically
+                bound title!
+            </span>
+        </div>
+        <div id="conditional">
+            <span v-if="seen">Now you see me</span>
+        </div>
+        <div id="loop">
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
+        </div>
+        <div id="handleClick">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+        <div id="input">
+            <p>{{ message }}</p>
+            <input v-model="message" />
+        </div>
+        <div id="component">
+            <ol>
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                ></todo-item>
+            </ol>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    message: "Hello Vue!"
+                }
+            });
+            var v_bind = new Vue({
+                el: "#v_bind",
+                data: {
+                    message:
+                        "You loaded this page on " + new Date().toLocaleString()
+                }
+            });
+            var conditional = new Vue({
+                el: "#conditional",
+                data: {
+                    seen: true
+                }
+            });
+            var loop = new Vue({
+                el: "#loop",
+                data: {
+                    todos: [{ text: "Learn Vue.js" }, { text: "Be awesome!" }]
+                }
+            });
+            var handleClick = new Vue({
+                el: "#handleClick",
+                data: {
+                    message: "Hello Vue.js"
+                },
+                methods: {
+                    reverseMessage: function() {
+                        this.message = this.message
+                            .split("")
+                            .reverse()
+                            .join("");
+                    }
+                }
+            });
+            var input = new Vue({
+                el: "#input",
+                data: {
+                    message: "Hello Vue!"
+                }
+            });
+            Vue.component("todo-item", {
+                props: ["todo"],
+                template: "<li>{{ todo.text }}</li>"
+            });
+            var component = new Vue({
+                el: "#component",
+                data: {
+                    groceryList: [
+                        { id: 0, text: "Vegetables" },
+                        { id: 1, text: "Cheese" },
+                        {
+                            id: 2,
+                            text: "Whatever else humans are supposed to eat"
+                        }
+                    ]
+                }
+            });
+        </script>
+    </body>
+</html>
