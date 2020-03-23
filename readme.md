@@ -7,6 +7,6 @@ This repository uses branches to separate content by language or subsection.
 
 Available branches are:
 
-- [React](../react)
-- [Vue](../vue)
-- [Golang](../go)
+- [React](https://github.com/zhirnovv/almanac/tree/react)
+- [Vue](https://github.com/zhirnovv/almanac/tree/vue)
+- [Golang](https://github.com/zhirnovv/almanac/tree/go)
