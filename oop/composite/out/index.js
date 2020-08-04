@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var CompositeEquipment_1 = require("./CompositeEquipment");
+var FloppyDisk_1 = require("./FloppyDisk");
+var smallFloppy = new FloppyDisk_1.FloppyDisk("Small Floppy Disk", 10);
+console.log(smallFloppy);
+var largeFloppy = new FloppyDisk_1.FloppyDisk("Large Floppy Disk", 1000);
+console.log(largeFloppy);
+var floppyReader = new CompositeEquipment_1.CompositeEquipment("Floppy Reader");
+floppyReader.add(smallFloppy);
+floppyReader.add(largeFloppy);
+var chassis = new CompositeEquipment_1.CompositeEquipment("Chassis");
+chassis.add(floppyReader);
+console.log(chassis.netPrice, chassis.wattage, chassis.discountPrice);
+floppyReader.remove(smallFloppy);
+console.log(chassis.netPrice, chassis.wattage, chassis.discountPrice);
